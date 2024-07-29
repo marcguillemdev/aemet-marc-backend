@@ -1,0 +1,67 @@
+{
+  "name": "aemet-marc-backend",
+  "dockerComposeFile": [
+    "docker-compose.yml"
+  ],
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17",
+      "jdkDistro": "tem",
+      "installGradle": true
+    }
+  },
+  "service": "aemet-marc-backend",
+  "updateRemoteUserUID": true,
+  "onCreateCommand": [
+    "/bin/bash",
+    "-i",
+    "./.devcontainer/onCreate.sh"
+  ],
+  "workspaceFolder": "/workspaces",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "SonarSource.sonarlint-vscode",
+        "vmware.vscode-boot-dev-pack",
+        "madhavd1.javadoc-tools",
+        "dgileadi.java-decompiler",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-lombok",
+        "redhat.vscode-xml",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/current",
+        "sonarlint.ls.javaHome": "/usr/local/sdkman/candidates/java/current",
+        "sonarlint.connectedMode.project": {
+          "projectKey": "aemet:marc:backend",
+          "connectionId": "sonar-incibe"
+        },
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-17",
+            "path": "/usr/local/sdkman/candidates/java/current",
+            "default": true
+          }
+        ],
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash",
+            "args": [
+              "-i"
+            ]
+          }
+        },
+        "local-history.path": "/tmp",
+        "editor.renderControlCharacters": true,
+        "editor.detectIndentation": false,
+        "editor.tabSize": 2,
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "workbench.editor.enablePreview": false
+      }
+    }
+  }
+}

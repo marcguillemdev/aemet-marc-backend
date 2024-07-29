@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - ./data:/data/db:rw
+    ports:
+      - 27017:27017
+
+  aemet-marc-backend:
+    image: mcr.microsoft.com/devcontainers/base:ubuntu-22.04
+    environment:
+      - TZ=Europe/Madrid
+    volumes:
+      # Mounts the project folder to '/workspace'. While this file is in .devcontainer,
+      # mounts are relative to the first file in the list, which is a level up.
+      - type: bind
+        source: ../
+        target: /workspaces
+
+      # VSCode server extensions cache
+      - type: volume
+        source: vscode-server-extensions-cache
+        target: /vscode/vscode-server/extensionsCache
+
+      # Maven repository cache
+      - type: volume
+        source: m2-repository-cache
+        target: /home/vscode/.m2/repository
+
+      - type: bind
+        source: config/settings.xml
+        target: /home/vscode/.m2/settings.xml
+    # Overrides default command so things don't shut down after the process ends.
+    #command: sleep infinity
+    command: /bin/sh -c "while sleep 1000; do :; done"
+
+volumes:
+  vscode-server-extensions-cache:
+    # Create or use a volume with given name
+    name: vscode-server-extensions-cache
+  m2-repository-cache:
+    # Create or use a volume with given name
+    name: m2-repository-cache

@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: aemet-marc-backend
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: aemet-marc
+      username: root
+      password: password
+
+server:
+  port: 8080
