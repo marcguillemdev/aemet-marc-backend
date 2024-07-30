@@ -3,11 +3,26 @@ spring:
     name: aemet-marc-backend
   data:
     mongodb:
-      host: localhost
+      host: mongo
       port: 27017
-      database: aemet-marc
-      username: root
-      password: password
+      database: AEMET-MARC-DB
+      username: ${MONGO_INITDB_ROOT_USERNAME}
+      password: ${MONGO_INITDB_ROOT_PASSWORD}
+      authentication-database: admin
+
+client:
+  origin: "http://localhost:4200"
 
 server:
   port: 8080
+
+aemet:
+  api:
+    key: ${AEMET_API_KEY}
+    urls: 
+      base: https://opendata.aemet.es/opendata/api/
+      municipios: maestro/municipios
+      prediccion: 
+        municipios: prediccion/especifica/municipio/horaria
+
+    

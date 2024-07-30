@@ -1,0 +1,29 @@
+{
+  "properties": [
+    {
+      "name": "aemet.api.key",
+      "type": "java.lang.String",
+      "description": "Section that allows you to define the key for the AEMET service 'aemet.api.key'"
+    },
+    {
+      "name": "aemet.api.urls.base",
+      "type": "java.lang.String",
+      "description": "Section that allows you to define the base url for the AEMET service 'aemet.api.url'"
+    },
+    {
+      "name": "aemet.api.urls.municipios",
+      "type": "java.lang.String",
+      "description": "Section that allows you to define the base url for the AEMET service 'aemet.api.url'"
+    },
+    {
+      "name": "client.origin",
+      "type": "java.lang.String",
+      "description": "Used to configure CORS. The value is the URL of the client application."
+    },
+    {
+      "name": "aemet.api.urls.prediccion.municipios",
+      "type": "java.lang.String",
+      "description": "Section that allows you to define the base url for the AEMET service 'aemet.api.url'"
+    }
+  ]
+}

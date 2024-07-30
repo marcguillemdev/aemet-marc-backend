@@ -5,17 +5,26 @@ services:
     image: mongo
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/
+      ME_CONFIG_BASICAUTH: false
     volumes:
       - ./data:/data/db:rw
     ports:
-      - 27017:27017
+      - '27017:27017'
+    networks:
+      - aemet-marc-backend-network
 
   aemet-marc-backend:
     image: mcr.microsoft.com/devcontainers/base:ubuntu-22.04
     environment:
       - TZ=Europe/Madrid
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - AEMET_API_KEY=${AEMET_API_KEY}
+    networks:
+      - aemet-marc-backend-network
     volumes:
       # Mounts the project folder to '/workspace'. While this file is in .devcontainer,
       # mounts are relative to the first file in the list, which is a level up.
@@ -47,3 +56,7 @@ volumes:
   m2-repository-cache:
     # Create or use a volume with given name
     name: m2-repository-cache
+
+networks:
+  aemet-marc-backend-network:
+    driver: bridge

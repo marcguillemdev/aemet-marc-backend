@@ -38,3 +38,6 @@ out/
 
 # DB
 .devcontainer/data
+
+# Env files
+.env
