@@ -23,6 +23,6 @@ aemet:
       base: https://opendata.aemet.es/opendata/api/
       municipios: maestro/municipios
       prediccion: 
-        municipios: prediccion/especifica/municipio/horaria
+        municipio: prediccion/especifica/municipio/diaria/%s
 
     

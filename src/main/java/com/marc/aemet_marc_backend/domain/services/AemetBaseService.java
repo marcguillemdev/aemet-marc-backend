@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.core.ParameterizedTypeReference;
 
 public interface AemetBaseService {
-  <T> T sendHttpRequest(String url, Class<T> responseType);
+  <T> T sendHttpGetRequest(String url, Class<T> responseType);
 
-  <T> List<T> sendHttpRequest(String url, ParameterizedTypeReference<List<T>> responseType);
+  <T> List<T> sendHttpGetRequest(String url, ParameterizedTypeReference<List<T>> responseType);
+
+  Double convertCelsiusToFahrenheit(double celsius);
 }

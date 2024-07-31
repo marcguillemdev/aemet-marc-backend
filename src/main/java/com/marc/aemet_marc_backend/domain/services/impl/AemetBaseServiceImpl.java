@@ -27,7 +27,7 @@ public class AemetBaseServiceImpl implements AemetBaseService {
   private final AemetConfig aemetConfig;
 
   @Override
-  public <T> T sendHttpRequest(String url, Class<T> responseType) {
+  public <T> T sendHttpGetRequest(String url, Class<T> responseType) {
     RestTemplate restTemplate = createRestTemplate();
     HttpHeaders headers = getHttpHeaders();
     HttpEntity<String> entity = new HttpEntity<>(headers);
@@ -48,7 +48,7 @@ public class AemetBaseServiceImpl implements AemetBaseService {
   }
 
   @Override
-  public <T> List<T> sendHttpRequest(String url, ParameterizedTypeReference<List<T>> responseType) {
+  public <T> List<T> sendHttpGetRequest(String url, ParameterizedTypeReference<List<T>> responseType) {
     RestTemplate restTemplate = createRestTemplate();
     HttpHeaders headers = getHttpHeaders();
     HttpEntity<String> entity = new HttpEntity<>(headers);

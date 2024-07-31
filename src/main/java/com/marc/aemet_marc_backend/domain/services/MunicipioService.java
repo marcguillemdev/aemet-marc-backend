@@ -2,10 +2,10 @@ package com.marc.aemet_marc_backend.domain.services;
 
 import java.util.List;
 
-import com.marc.aemet_marc_backend.domain.documents.Municipio;
+import com.marc.aemet_marc_backend.domain.documents.MunicipioDao;
 
 public interface MunicipioService {
-  List<Municipio> getMunicipios();
+  List<MunicipioDao> getMunicipios();
 
-  List<Municipio> findMunicipiosByQuery(String query);
+  List<MunicipioDao> findMunicipiosByQuery(String query);
 }

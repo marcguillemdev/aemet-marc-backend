@@ -9,7 +9,8 @@ import lombok.RequiredArgsConstructor;
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class Prediccion {
-  private List<Dia> dia;
-
+public class Clima {
+  private int maxima;
+  private int minima;
+  private List<DatosPorHora> dato;
 }

@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Document(collection = "municipios")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Municipio {
+public class MunicipioDao {
 
   @Id
   private String id;

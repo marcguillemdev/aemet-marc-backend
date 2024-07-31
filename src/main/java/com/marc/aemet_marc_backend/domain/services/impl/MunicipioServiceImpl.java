@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 
-import com.marc.aemet_marc_backend.domain.documents.Municipio;
+import com.marc.aemet_marc_backend.domain.documents.MunicipioDao;
 import com.marc.aemet_marc_backend.domain.repository.MunicipioRepository;
 import com.marc.aemet_marc_backend.domain.services.AemetBaseService;
 import com.marc.aemet_marc_backend.domain.services.MunicipioService;
@@ -22,14 +22,14 @@ public class MunicipioServiceImpl implements MunicipioService {
   private final MunicipioRepository municipioRepository;
 
   @Override
-  public List<Municipio> getMunicipios() {
-    return aemetBaseService.sendHttpRequest(aemetConfig.getApi().getUrls().getMunicipios(),
-        new ParameterizedTypeReference<List<Municipio>>() {
+  public List<MunicipioDao> getMunicipios() {
+    return aemetBaseService.sendHttpGetRequest(aemetConfig.getApi().getUrls().getMunicipios(),
+        new ParameterizedTypeReference<List<MunicipioDao>>() {
         });
   }
 
   @Override
-  public List<Municipio> findMunicipiosByQuery(String query) {
+  public List<MunicipioDao> findMunicipiosByQuery(String query) {
     initMunicipiosIfNeeded();
     return municipioRepository.findFirst10ByNombreContainingIgnoreCase(query);
   }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.marc.aemet_marc_backend.application.dto.MunicipioDto;
-import com.marc.aemet_marc_backend.domain.documents.Municipio;
+import com.marc.aemet_marc_backend.domain.documents.MunicipioDao;
 import com.marc.aemet_marc_backend.domain.services.MunicipioService;
 import com.marc.aemet_marc_backend.infrastructure.shared.interfaces.ToDto;
 
@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/municipios")
-public class MunicipioController implements ToDto<Municipio, MunicipioDto> {
+public class MunicipioController implements ToDto<MunicipioDao, MunicipioDto> {
 
   private final MunicipioService municipioService;
   private final ObjectMapper objectMapper;
@@ -31,12 +31,12 @@ public class MunicipioController implements ToDto<Municipio, MunicipioDto> {
   }
 
   @Override
-  public MunicipioDto toDto(Municipio entity) {
+  public MunicipioDto toDto(MunicipioDao entity) {
     return objectMapper.convertValue(entity, MunicipioDto.class);
   }
 
   @Override
-  public List<MunicipioDto> toDto(List<Municipio> entities) {
+  public List<MunicipioDto> toDto(List<MunicipioDao> entities) {
     return objectMapper.convertValue(
         entities,
         objectMapper.getTypeFactory().constructCollectionType(List.class, MunicipioDto.class));
