@@ -2,6 +2,8 @@ package com.marc.aemet_marc_backend.domain.services.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
@@ -13,9 +15,11 @@ import com.marc.aemet_marc_backend.domain.model.DatosPorHora;
 import com.marc.aemet_marc_backend.domain.model.Dia;
 import com.marc.aemet_marc_backend.domain.model.PrediccionMunicipio;
 import com.marc.aemet_marc_backend.domain.model.ProbabilidadPrecipitacion;
+import com.marc.aemet_marc_backend.domain.repository.MunicipioRepository;
 import com.marc.aemet_marc_backend.domain.services.AemetBaseService;
 import com.marc.aemet_marc_backend.domain.services.PrediccionService;
 import com.marc.aemet_marc_backend.infrastructure.config.aemet.AemetConfig;
+import com.marc.aemet_marc_backend.infrastructure.models.NotFoundException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,21 +29,25 @@ public class PrediccionServiceImpl implements PrediccionService {
 
   private final AemetBaseService aemetService;
   private final AemetConfig aemetConfig;
+  private final MunicipioRepository municipioRepository;
 
   @Override
   public PrediccionMunicipioDto getPrediccionMunicipio(String idMunicipio, UnidadTemperatura unidadTemperatura) {
+    if (!municipioRepository.existsById(idMunicipio)) {
+      throw new NotFoundException("No se ha encontrado el municipio con id: " + idMunicipio);
+    }
     final String url = String.format(aemetConfig.getApi().getUrls().getPrediccion().getMunicipio(), idMunicipio);
     List<PrediccionMunicipio> prediccionMunicipios = aemetService.sendHttpGetRequest(url,
         new ParameterizedTypeReference<List<PrediccionMunicipio>>() {
         });
-
     return transformPrediccion(prediccionMunicipios, unidadTemperatura);
   }
 
   private PrediccionMunicipioDto transformPrediccion(List<PrediccionMunicipio> prediccionList,
       UnidadTemperatura unidadTemperatura) {
 
-    Dia tomorrow = getTomorrowDay(prediccionList);
+    Dia tomorrow = getTomorrowDay(prediccionList).orElseThrow(
+        () -> new RuntimeException("No se ha encontrado la predicción para mañana"));
 
     double temperaturaMedia = this.calculateTemperaturaMedia(tomorrow);
     if (unidadTemperatura == UnidadTemperatura.G_FAH) {
@@ -59,11 +67,12 @@ public class PrediccionServiceImpl implements PrediccionService {
   private List<ProbabilidadPrecipitacionDto> mapProbabilidadPrecipitacion(
       List<ProbabilidadPrecipitacion> probabilidadPrecipitacionList) {
     return probabilidadPrecipitacionList.stream()
+        .filter(probabilidad -> !List.of("00-24", "00-12", "12-24").contains(probabilidad.getPeriodo()))
         .map(probabilidad -> ProbabilidadPrecipitacionDto.builder()
             .periodo(probabilidad.getPeriodo())
             .probabilidad(probabilidad.getValue())
             .build())
-        .toList();
+        .collect(Collectors.toList());
   }
 
   private Double calculateTemperaturaMedia(Dia dia) {
@@ -73,12 +82,11 @@ public class PrediccionServiceImpl implements PrediccionService {
         .orElse(0.0);
   }
 
-  private Dia getTomorrowDay(List<PrediccionMunicipio> prediccionMunicipios) {
+  private Optional<Dia> getTomorrowDay(List<PrediccionMunicipio> prediccionMunicipios) {
     return prediccionMunicipios.stream()
         .flatMap(prediccionMunicipio -> prediccionMunicipio.getPrediccion().getDia().stream())
         .filter(dia -> dia.getFecha().after(new Date()))
-        .findFirst()
-        .orElse(null);
+        .findFirst();
   }
 
 }

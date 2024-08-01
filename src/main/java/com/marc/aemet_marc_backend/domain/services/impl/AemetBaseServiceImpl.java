@@ -82,4 +82,9 @@ public class AemetBaseServiceImpl implements AemetBaseService {
     return headers;
   }
 
+  @Override
+  public Double convertCelsiusToFahrenheit(double celsius) {
+    return celsius * 9 / 5 + 32;
+  }
+
 }

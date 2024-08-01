@@ -1,4 +1,4 @@
-package com.marc.aemet_marc_backend.infrastructure.controllers;
+package com.marc.aemet_marc_backend.application.controllers;
 
 import java.util.List;
 
