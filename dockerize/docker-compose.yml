@@ -1,0 +1,24 @@
+name: aemet-marc-backend
+services:
+  aemet-marc-spring-service:
+    image: marcguillemdev/aemet-marc-backend:0.1
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - AEMET_API_KEY=${AEMET_API_KEY}
+
+  mongo:
+    image: mongo
+    restart: on-failure
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/
+      ME_CONFIG_BASICAUTH: false
+    volumes:
+      - ./data:/data/db:rw
+    ports:
+      - '27017:27017'

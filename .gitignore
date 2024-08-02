@@ -1,9 +1,12 @@
 HELP.md
 .gradle
+gradle/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+aemet-marc-backend-0.0.1-SNAPSHOT.jar
+dockerize/data
 
 ### STS ###
 .apt_generated
