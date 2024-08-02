@@ -23,6 +23,21 @@ import com.marc.aemet_marc_backend.infrastructure.models.NotFoundException;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * This class implements the PrediccionService interface and provides methods to
+ * retrieve weather forecast information for a specific municipality.
+ * It uses the AemetBaseService to send HTTP GET requests and parse the
+ * response, and the AemetConfig to retrieve API URLs.
+ * The PrediccionServiceImpl class is responsible for transforming the retrieved
+ * data into a PrediccionMunicipioDto object, which contains the average
+ * temperature, precipitation probability, and temperature unit.
+ * 
+ * @param aemetService        The AemetBaseService used to send HTTP GET
+ *                            requests and parse the response.
+ * @param aemetConfig         The AemetConfig used to retrieve API URLs.
+ * @param municipioRepository The MunicipioRepository used to check if a
+ *                            municipality exists.
+ */
 @Service
 @RequiredArgsConstructor
 public class PrediccionServiceImpl implements PrediccionService {
@@ -37,7 +52,7 @@ public class PrediccionServiceImpl implements PrediccionService {
       throw new NotFoundException("No se ha encontrado el municipio con id: " + idMunicipio);
     }
     final String url = String.format(aemetConfig.getApi().getUrls().getPrediccion().getMunicipio(), idMunicipio);
-    List<PrediccionMunicipio> prediccionMunicipios = aemetService.sendHttpGetRequest(url,
+    List<PrediccionMunicipio> prediccionMunicipios = aemetService.sendHttpGetRequestAndParseResponse(url,
         new ParameterizedTypeReference<List<PrediccionMunicipio>>() {
         });
     return transformPrediccion(prediccionMunicipios, unidadTemperatura);

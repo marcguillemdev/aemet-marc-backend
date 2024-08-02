@@ -23,6 +23,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
       - AEMET_API_KEY=${AEMET_API_KEY}
+      - JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
     networks:
       - aemet-marc-backend-network
     volumes:

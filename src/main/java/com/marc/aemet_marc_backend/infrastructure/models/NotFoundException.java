@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Exception thrown when a resource is not found.
+ **/
 @Data
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)

@@ -19,6 +19,9 @@ import com.marc.aemet_marc_backend.infrastructure.config.aemet.AemetConfig;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * A service implementation for AEMET base operations.
+ */
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -27,7 +30,7 @@ public class AemetBaseServiceImpl implements AemetBaseService {
   private final AemetConfig aemetConfig;
 
   @Override
-  public <T> T sendHttpGetRequest(String url, Class<T> responseType) {
+  public <T> T sendHttpGetRequestAndParseResponse(String url, Class<T> responseType) {
     RestTemplate restTemplate = createRestTemplate();
     HttpHeaders headers = getHttpHeaders();
     HttpEntity<String> entity = new HttpEntity<>(headers);
@@ -48,7 +51,7 @@ public class AemetBaseServiceImpl implements AemetBaseService {
   }
 
   @Override
-  public <T> List<T> sendHttpGetRequest(String url, ParameterizedTypeReference<List<T>> responseType) {
+  public <T> List<T> sendHttpGetRequestAndParseResponse(String url, ParameterizedTypeReference<List<T>> responseType) {
     RestTemplate restTemplate = createRestTemplate();
     HttpHeaders headers = getHttpHeaders();
     HttpEntity<String> entity = new HttpEntity<>(headers);

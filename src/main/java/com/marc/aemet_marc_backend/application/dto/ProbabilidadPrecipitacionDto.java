@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Represents a data transfer object for probability of precipitation.
+ */
 @Data
 @Builder
 @AllArgsConstructor

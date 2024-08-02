@@ -7,6 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * A configuration class for Aemet API. It is used to read the configuration
+ * from the application.yml file.
+ */
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
@@ -40,5 +44,4 @@ public class AemetConfig {
       private String municipio;
     }
   }
-
 }

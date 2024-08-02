@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Represents a base response from the Aemet API.
+ */
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor

@@ -13,6 +13,12 @@ import com.marc.aemet_marc_backend.infrastructure.config.aemet.AemetConfig;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * This class implements the MunicipioService interface and provides the
+ * functionality to retrieve and manipulate MunicipioDao objects.
+ * It depends on the AemetBaseService, AemetConfig, and MunicipioRepository
+ * interfaces for its operations.
+ */
 @Service
 @RequiredArgsConstructor
 public class MunicipioServiceImpl implements MunicipioService {
@@ -23,7 +29,7 @@ public class MunicipioServiceImpl implements MunicipioService {
 
   @Override
   public List<MunicipioDao> getMunicipios() {
-    return aemetBaseService.sendHttpGetRequest(aemetConfig.getApi().getUrls().getMunicipios(),
+    return aemetBaseService.sendHttpGetRequestAndParseResponse(aemetConfig.getApi().getUrls().getMunicipios(),
         new ParameterizedTypeReference<List<MunicipioDao>>() {
         });
   }

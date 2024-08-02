@@ -4,6 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Represents a MunicipioDto object.
+ * 
+ * This class is used to store information about a municipality.
+ */
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor

@@ -10,6 +10,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Represents a Municipio data access object.
+ * 
+ * This class is used to interact with the "municipios" collection in the
+ * database.
+ * It contains properties that represent the fields of a Municipio document.
+ * 
+ * The MunicipioDao class also provides a setter method for the id property,
+ * which removes the first two characters from the given id string.
+ */
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor

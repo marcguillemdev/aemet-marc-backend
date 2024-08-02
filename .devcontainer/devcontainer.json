@@ -12,7 +12,8 @@
       "version": "17",
       "jdkDistro": "tem",
       "installGradle": false
-    }
+    },
+    "ghcr.io/devcontainers/features/node:1": {}
   },
   "service": "aemet-marc-backend",
   "updateRemoteUserUID": true,

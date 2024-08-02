@@ -9,6 +9,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Represents a DTO (Data Transfer Object) for the prediction of a municipality.
+ * This class contains information about the average temperature, temperature
+ * unit, and probability of precipitation.
+ */
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
