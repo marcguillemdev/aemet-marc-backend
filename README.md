@@ -52,5 +52,8 @@ Once we have the .env file created, we can run the DevContainer:
 1. **Open the command palette and type 'Reopen in container...' or 'Open folder in container...'**
  2. Wait for the container to load
 
+## 🐋 DockerHub
+The package is available through [DockerHub](https://hub.docker.com/r/marcguillemdev/aemet-marc-backend).
+
 ## LICENSE
  [GNU General Public License v3.0](https://github.com/marcguillemdev/aemet-marc-backend/blob/main/LICENSE)
