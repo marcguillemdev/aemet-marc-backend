@@ -4,10 +4,14 @@
     "docker-compose.yml"
   ],
   "features": {
+    "ghcr.io/devcontainers-contrib/features/gradle-sdkman:2": {
+      "version": "latest",
+      "jdkVersion": "17"
+    },
     "ghcr.io/devcontainers/features/java:1": {
       "version": "17",
       "jdkDistro": "tem",
-      "installGradle": true
+      "installGradle": false
     }
   },
   "service": "aemet-marc-backend",
@@ -29,7 +33,8 @@
         "vscjava.vscode-lombok",
         "redhat.vscode-xml",
         "ms-azuretools.vscode-docker",
-        "mongodb.mongodb-vscode"
+        "mongodb.mongodb-vscode",
+        "vscjava.vscode-gradle"
       ],
       "settings": {
         "java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/current",
