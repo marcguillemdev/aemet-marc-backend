@@ -36,7 +36,7 @@ public class MunicipioController implements ToDto<MunicipioDao, MunicipioDto> {
    * @return A ResponseEntity containing a list of MunicipioDto objects.
    */
   @GetMapping("/busqueda")
-  public ResponseEntity<List<MunicipioDto>> getMethodName(@RequestParam("municipio") String municipio) {
+  public ResponseEntity<List<MunicipioDto>> findMunicipiosByQuery(@RequestParam("municipio") String municipio) {
     return ResponseEntity.ok(
         toDto(municipioService.findMunicipiosByQuery(municipio)));
   }

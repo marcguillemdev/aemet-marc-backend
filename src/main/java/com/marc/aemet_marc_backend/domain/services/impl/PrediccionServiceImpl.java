@@ -19,7 +19,7 @@ import com.marc.aemet_marc_backend.domain.repository.MunicipioRepository;
 import com.marc.aemet_marc_backend.domain.services.AemetBaseService;
 import com.marc.aemet_marc_backend.domain.services.PrediccionService;
 import com.marc.aemet_marc_backend.infrastructure.config.aemet.AemetConfig;
-import com.marc.aemet_marc_backend.infrastructure.models.NotFoundException;
+import com.marc.aemet_marc_backend.infrastructure.exceptions.models.NotFoundException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -91,6 +91,9 @@ public class PrediccionServiceImpl implements PrediccionService {
   }
 
   private Double calculateTemperaturaMedia(Dia dia) {
+    if (dia.getTemperatura().getDato() == null) {
+      return (dia.getTemperatura().getMaxima() + dia.getTemperatura().getMinima()) / 2.0;
+    }
     return dia.getTemperatura().getDato().stream()
         .mapToDouble(DatosPorHora::getValue)
         .average()

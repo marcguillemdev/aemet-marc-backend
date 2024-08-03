@@ -42,6 +42,15 @@ public class AemetBaseServiceImpl implements AemetBaseService {
     return processObjectResponse(response, responseType, restTemplate, headers);
   }
 
+  /**
+   * Processes the object response from the AEMET API.
+   * 
+   * @param response     the AemetBaseResponse object containing the response data
+   * @param responseType the class type of the response object
+   * @param restTemplate the RestTemplate object used for making HTTP requests
+   * @param headers      the HttpHeaders object containing the request headers
+   * @return the response object of type T
+   */
   private <T> T processObjectResponse(AemetBaseResponse response, Class<T> responseType, RestTemplate restTemplate,
       HttpHeaders headers) {
     String url = response.getDatos();
@@ -63,6 +72,17 @@ public class AemetBaseServiceImpl implements AemetBaseService {
     return processListResponse(response, responseType, restTemplate, headers);
   }
 
+  /**
+   * Processes a list response from the AEMET API.
+   * 
+   * @param response     The AemetBaseResponse object containing the response
+   *                     data.
+   * @param responseType The ParameterizedTypeReference representing the type of
+   *                     the response.
+   * @param restTemplate The RestTemplate used to make the API request.
+   * @param headers      The HttpHeaders to be included in the API request.
+   * @return A List of objects of type T representing the processed response.
+   */
   private <T> List<T> processListResponse(AemetBaseResponse response, ParameterizedTypeReference<List<T>> responseType,
       RestTemplate restTemplate, HttpHeaders headers) {
     String url = response.getDatos();
@@ -71,6 +91,11 @@ public class AemetBaseServiceImpl implements AemetBaseService {
     return restTemplate.exchange(url, HttpMethod.GET, entity, responseType).getBody();
   }
 
+  /**
+   * Creates a new instance of RestTemplate with a custom configuration.
+   * 
+   * @return the created RestTemplate instance
+   */
   private RestTemplate createRestTemplate() {
     RestTemplate restTemplate = new RestTemplate();
     MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
@@ -79,6 +104,12 @@ public class AemetBaseServiceImpl implements AemetBaseService {
     return restTemplate;
   }
 
+  /**
+   * Returns the HTTP headers for the AemetBaseServiceImpl.
+   *
+   * @return the HTTP headers containing the "Api_key" header with the configured
+   *         API key
+   */
   private HttpHeaders getHttpHeaders() {
     HttpHeaders headers = new HttpHeaders();
     headers.set("Api_key", aemetConfig.getApi().getKey());

@@ -1,4 +1,4 @@
-package com.marc.aemet_marc_backend.infrastructure.error_handler;
+package com.marc.aemet_marc_backend.infrastructure.exceptions.error_handler;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.marc.aemet_marc_backend.application.dto.ErrorDto;
-import com.marc.aemet_marc_backend.infrastructure.models.NotFoundException;
+import com.marc.aemet_marc_backend.infrastructure.exceptions.models.NotFoundException;
 
 @ControllerAdvice
 public class RestControllerAdvice extends ResponseEntityExceptionHandler {

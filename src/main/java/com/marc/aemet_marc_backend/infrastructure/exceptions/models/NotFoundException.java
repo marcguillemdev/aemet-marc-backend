@@ -1,4 +1,4 @@
-package com.marc.aemet_marc_backend.infrastructure.models;
+package com.marc.aemet_marc_backend.infrastructure.exceptions.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
