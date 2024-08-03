@@ -1,7 +1,7 @@
-name: aemet-marc-backend
+name: aemet-marc-backend-deploy
 services:
   aemet-marc-spring-service:
-    image: marcguillemdev/aemet-marc-backend:0.1
+    image: marcguillemdev/aemet-marc-backend:latest
     restart: on-failure
     ports:
       - "8080:8080"
@@ -9,6 +9,9 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
       - AEMET_API_KEY=${AEMET_API_KEY}
+      - CLIENT_ORIGIN=${CLIENT_ORIGIN}
+    depends_on:
+      - mongo
 
   mongo:
     image: mongo
