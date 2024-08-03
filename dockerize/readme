@@ -1,0 +1,7 @@
+Yo will need an .env file with the following variables:
+    MONGO_INITDB_ROOT_USERNAME=root
+    MONGO_INITDB_ROOT_PASSWORD=password
+    CLIENT_ORIGIN=http://localhost
+    AEMET_API_KEY=api_key
+
+And the .jar file, both at the same level of this file.
