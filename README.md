@@ -55,5 +55,5 @@ Once we have the .env file created, we can run the DevContainer:
 ## 🐋 DockerHub
 The package is available through [DockerHub](https://hub.docker.com/r/marcguillemdev/aemet-marc-backend).
 
-## LICENSE
+## 💼 LICENSE
  [GNU General Public License v3.0](https://github.com/marcguillemdev/aemet-marc-backend/blob/main/LICENSE)
