@@ -37,10 +37,7 @@ Once we have done so, we can run the command in a new terminal **INSIDE** VSCode
 
 ## 🔧 Setup .env file
 
-The project uses environment variables to manage the most sensitive properties. The .env file must be located in .devcontainer: 
-
-    cd .devcontainer
-    nano .env
+The project uses environment variables to manage the most sensitive properties. The .env file must be located in .devcontainer.
 
 The following properties has to be present:
  - MONGO_INITDB_ROOT_USERNAME=root
