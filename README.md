@@ -48,6 +48,7 @@ The following properties has to be present:
 Once we have the .env file created, we can run the DevContainer:
 1. **Open the command palette and type 'Reopen in container...' or 'Open folder in container...'**
  2. Wait for the container to load
+ 3. Find the Spring Boot icon in the left sidebar and execute your project
 
 ## 🐋 DockerHub
 The package is available through [DockerHub](https://hub.docker.com/r/marcguillemdev/aemet-marc-backend).
